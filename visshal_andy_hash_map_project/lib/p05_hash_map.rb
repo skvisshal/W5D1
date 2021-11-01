@@ -59,12 +59,12 @@ class HashMap
 
   def resize!
     temp_store = Array.new(num_buckets * 2) { LinkedList.new }
-    @store.each do |sub_arr|
-      sub_arr.each do |ele|
-        if temp_store[ele.hash % temp_store.length].include?(ele) 
-          temp_store[ele.hash % temp_store.length].update(ele,ele.val) 
+    @store.each do |sub_list|
+      sub_list.each do |ele|
+        if temp_store[ele.key.hash % temp_store.length].include?(ele.key) 
+          temp_store[ele.key.hash % temp_store.length].update(ele.key,ele.val) 
         else
-          temp_store[ele.hash % temp_store.length].append(ele,ele.val)
+          temp_store[ele.key.hash % temp_store.length].append(ele.key,ele.val)
         end
       end
     end
